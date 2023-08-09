@@ -1,9 +1,14 @@
-const express = require('express');
+// Import packages
+const express = require("express");
+const home = require("./routes/home");
 
+// Middlewares
 const app = express();
+app.use(express.json());
 
-app.get('/getdata', (req, res) => {
-  res.send('Successful response.');
-});
+// Routes
+app.use("/home", home);
 
-app.listen(3000, () => console.log('Example app is listening on port 3000.'));
+// connection
+const port = process.env.PORT || 9001;
+app.listen(port, () => console.log(`Listening to port ${port}`));
